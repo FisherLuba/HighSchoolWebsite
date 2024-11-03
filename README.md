@@ -36,3 +36,8 @@ Oracle VPS Ip: <IP>
 
 # psql -U postgres -W  -h localhost
 # \c schooldb - connect to schooldb
+
+![submit-question-page](https://github.com/user-attachments/assets/221a2f12-300c-4554-8b69-b854b0ec06e7)
+![question-response-page](https://github.com/user-attachments/assets/0ecfaf92-2bb6-4db1-af2f-e53dcc1a117f)
+![deleting-and-editing](https://github.com/user-attachments/assets/bb84899d-2440-489d-ad0a-dfbf4998af04)
+![view-topic-page](https://github.com/user-attachments/assets/1a220edc-65f4-4e0f-b3ca-2af915a9bab7)
