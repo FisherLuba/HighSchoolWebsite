@@ -2,6 +2,9 @@ This is a website I made for my High School's National Honors Society (NHS). It 
 
 The reason I have a javascript-compiled and javascript-uncompiled is because I was using JSX, so I compiled the JSX into JavaScript and used that. I definitely could have done something better.
 
+This branch is just if you want to look at the website on your own computer with localhost. Some of the stuff doesn't work such as oauth, so only one account can be used and you cannot log out/in. 
+Some things are most likely broken because of this.
+
 # Notes / Personal Reminders
 
 Setting up on Oracle VPS

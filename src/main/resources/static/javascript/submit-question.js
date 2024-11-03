@@ -203,7 +203,8 @@ class Form extends React.Component {
         if (this.state.permissions == null) return null;
 
         if (!this.state.permissions["post_question"]) {
-            window.location = "/";
+            console.log(this.state.permissions);
+            // window.location = "/";
             return null;
         }
 

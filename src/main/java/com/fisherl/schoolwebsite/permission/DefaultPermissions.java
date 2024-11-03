@@ -8,26 +8,26 @@ import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.lang.Nullable;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
-//@Entity
+@Entity
 public class DefaultPermissions implements Permissible {
 
     private static final Path FILE_PATH = Path.of("permissions.json");
     public static final int STATIC_ID = 1;
 
-    //    @Id
+    @Id
     private int id = STATIC_ID;
-    //    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, Boolean> permissions;
 
     private DefaultPermissions(Map<String, Boolean> permissions) {
@@ -44,7 +44,9 @@ public class DefaultPermissions implements Permissible {
         final String json = Files.readString(FILE_PATH);
         if (json.isBlank()) {
             final Map<String, Boolean> defaultPermissions = Arrays.stream(Permission.values()).
-                    map(permission -> Map.entry(permission.toString().toUpperCase(Locale.ROOT), false)).
+//                    map(permission -> Map.entry(permission.toString().toUpperCase(Locale.ROOT), false)).
+        map(permission -> Map.entry(permission.toString().toUpperCase(Locale.ROOT),
+        true)).
                     collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
             final DefaultPermissions permissions = new DefaultPermissions(defaultPermissions);
             permissions.save();

@@ -1,5 +1,6 @@
 package com.fisherl.schoolwebsite.user;
 
+import com.fisherl.schoolwebsite.SchoolWebsiteApplication;
 import com.fisherl.schoolwebsite.post.Post;
 import com.fisherl.schoolwebsite.permission.DefaultPermissions;
 import com.fisherl.schoolwebsite.permission.Permission;
@@ -7,7 +8,7 @@ import com.fisherl.schoolwebsite.permission.TemporaryPermissions;
 import com.fisherl.schoolwebsite.permission.TemporaryPermissionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+//import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -74,16 +75,17 @@ public class UserManager {
     }
 
 
-    public Optional<PostUser> getUser(OAuth2User principal) {
-        return this.getUser(this.getPrincipalId(principal));
+    public Optional<PostUser> getUser(/*OAuth2User principal*/) {
+        return this.getUser(this.getPrincipalId(/*principal*/));
     }
 
-    public String getUserEmail(OAuth2User principal) {
-        return principal.getAttribute("email");
+    public String getUserEmail(/*OAuth2User principal*/) {
+//        return principal.getAttribute("email");
+        return SchoolWebsiteApplication.LOCAL_USER_EMAIL;
     }
 
-    public PostUser getOrCreateUser(OAuth2User principal) {
-        final String id = this.getPrincipalId(principal);
+    public PostUser getOrCreateUser(/*OAuth2User principal*/) {
+        final String id = this.getPrincipalId(/*principal*/);
         return this.getUser(id).map(user -> {
             for (var entry : this.defaultPermissions.getPermissions().entrySet()) {
                 if (!user.hasSetPermission(entry.getKey())) user.setPermission(entry.getKey(), entry.getValue());
@@ -91,14 +93,17 @@ public class UserManager {
             this.userRepository.save(user);
             return user;
         }).orElseGet(() -> {
-            final Optional<TemporaryPermissions> temporaryPermissions = this.temporaryPermissionsRepository.findById(this.getUserEmail(principal));
-            final String givenName = principal.getAttribute("given_name");
-            final String familyName = principal.getAttribute("family_name");
-            final String name = givenName + (familyName == null ? "" : " " + familyName);
+            final Optional<TemporaryPermissions> temporaryPermissions = this.temporaryPermissionsRepository.findById(this.getUserEmail(/*principal*/));
+//            final String givenName = principal.getAttribute("given_name");
+//            final String familyName = principal.getAttribute("family_name");
+//            final String name = givenName + (familyName == null ? "" : " " + familyName);
+            
             final PostUser user = new PostUser(
                     id,
-                    name,
-                    principal.getAttribute("email"),
+//                    name,
+                    SchoolWebsiteApplication.LOCAL_USER_NAME,
+//                    principal.getAttribute("email"),
+                    SchoolWebsiteApplication.LOCAL_USER_EMAIL,
                     new HashSet<>(),
                     new HashSet<>(),
                     temporaryPermissions.map(perms -> {
@@ -112,8 +117,8 @@ public class UserManager {
         });
     }
 
-    public Map<String, Boolean> getPermissions(OAuth2User principal, @Nullable Post<?> post) {
-        return this.getPermissions(this.getPrincipalId(principal), post);
+    public Map<String, Boolean> getPermissions(/*OAuth2User principal,*/@Nullable Post<?> post) {
+        return this.getPermissions(this.getPrincipalId(/*principal*/), post);
     }
 
     public Map<String, Boolean> getPermissions(String id, @Nullable Post<?> post) {
@@ -124,8 +129,10 @@ public class UserManager {
         return this.defaultPermissions.getPermissions();
     }
 
-    public boolean hasPermission(OAuth2User principal, Permission permission, @Nullable Post<?> post) {
-        return this.hasPermission(this.getPrincipalId(principal), permission, post);
+    public boolean hasPermission(/*OAuth2User principal,*/Permission permission,
+                                 @Nullable Post<?> post) {
+//        return this.hasPermission(this.getPrincipalId(/*principal*/), permission, post);
+        return true;
     }
 
     public boolean hasPermission(String id, Permission permission, @Nullable Post<?> post) {
@@ -137,8 +144,9 @@ public class UserManager {
         return permission.hasPermission(user, post);
     }
 
-    public String getPrincipalId(OAuth2User principal) {
-        return principal.getAttribute("sub");
+    public String getPrincipalId(/*OAuth2User principal*/) {
+//        return principal.getAttribute("sub");
+        return SchoolWebsiteApplication.LOCAL_USER_ID;
     }
 
     public UserRepository getUserRepository() {
@@ -148,10 +156,10 @@ public class UserManager {
     public void updatePermissionsByEmails(List<String> emails, Map<String, Boolean> permissions) {
         emails.forEach(email -> this.getUserByEmail(email).ifPresentOrElse(user -> {
             user.updatePermissions(permissions);
-            this.userRepository.save(user);
+//            this.userRepository.save(user);
         }, () -> {
-            final TemporaryPermissions temporaryPermissions = new TemporaryPermissions(email, permissions);
-            this.temporaryPermissionsRepository.save(temporaryPermissions);
+//            final TemporaryPermissions temporaryPermissions = new TemporaryPermissions(email, permissions);
+//            this.temporaryPermissionsRepository.save(temporaryPermissions);
         }));
     }
 }
