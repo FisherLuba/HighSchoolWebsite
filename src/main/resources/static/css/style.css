@@ -1,0 +1,111 @@
+body {
+    box-sizing: border-box;
+    background-color: #dfe9f7;
+}
+
+#navbar {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* background-color: #111; */
+    overflow-x: hidden;
+    padding-top: 60px;
+    height: 100%;
+    background-color: gray;
+    transition-property: width;
+    transition-duration: 51;
+}
+
+.navbar-hidden {
+    transition: width 1;
+    width: 40px;
+    /* display: none; */
+}
+
+#navbar-toggle {
+    margin-left: 5px;
+    font-size: 50px;
+    position: relative;
+    top: 425px;
+    left: 110px;
+    z-index: 1;
+    /* display: block; */
+}
+
+#navbar-toggle-closed {
+    margin-left: 5px;
+    font-size: 50px;
+    position: relative;
+    top: 425px;
+    left: 5px;
+    z-index: 1;
+}
+
+.navbar-item {
+    margin: 20px;
+    color: #1c4587ff;
+    background-color: #f7e19fff;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.navbar-item:nth-child(2) {
+    margin-top: 300px;
+}
+
+.navbar-item:hover {
+    cursor: pointer;
+}
+
+.pointer-on-hover:hover {
+    cursor: pointer;
+}
+
+.no-pointer-on-hover:hover {
+    cursor: default;
+}
+
+
+.right-shift {
+    transition: margin-left .5s;
+    margin-left: 150px;
+    /* padding: 20px; */
+}
+
+.no-display {
+    display: none;
+}
+
+.vertical-margin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.text-body {
+    border: 3px solid #5c6b73;
+    padding: 10px;
+}
+
+.response-row {
+    margin-top: 10px;
+}
+
+.question-snapshot:hover {
+    cursor: pointer;
+}
+
+.checkbox-dropdown-label {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.dropdown-color {
+    background-color: #eec643;
+}

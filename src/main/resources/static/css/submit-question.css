@@ -1,0 +1,33 @@
+.page-title {
+    margin-top: 20xp;
+    margin-bottom: 20px;
+}
+
+.question-input-area {
+    margin: auto;
+    text-align: center;
+}
+
+
+.form-control:focus {
+    border: none;
+    outline: 1px solid #4989e3;
+    box-shadow: none;
+}
+
+.form-control {
+    margin-top: 25px;
+}
+
+
+.question-title-label {
+    display: block;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.submit-button {
+    margin: auto;
+    margin-top: 25px;
+    display: block;
+}
