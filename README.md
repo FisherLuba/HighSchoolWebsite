@@ -1,6 +1,6 @@
 This is a website I made for my High School's National Honors Society (NHS). It allowed students to post questions and members of NHS or faculty could answer them.
 
-The reason I have a javascript-compiled and javascript-uncompiled is because I was using JSX, so I compiled the JSX into JavaScript and used that. I definitely could have done something better.
+The reason I have a javascript-compiled and javascript-uncompiled is because I was using JSX, so I compiled the JSX into JavaScript and used that.
 
 # Notes / Personal Reminders
 
